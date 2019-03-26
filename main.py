@@ -1,9 +1,10 @@
 import requests
 import os
-from dotenv import dotenv_values # load_dotenv отказывается работать
+from dotenv import load_dotenv
 import argparse
 
-TOKEN = dotenv_values()['TOKEN']
+load_dotenv()
+TOKEN = os.getenv('TOKEN')
 
 parser = argparse.ArgumentParser(description='Converter URL to bitlinks Enterprise Edition v. 0.02 beta')
 parser.add_argument('url', help='URL link to convert')
