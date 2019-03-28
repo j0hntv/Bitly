@@ -3,13 +3,6 @@ import os
 from dotenv import load_dotenv
 import argparse
 
-load_dotenv()
-TOKEN = os.getenv('TOKEN')
-
-parser = argparse.ArgumentParser(description='Converter URL to bitlinks Enterprise Edition v. 0.02 beta')
-parser.add_argument('url', help='URL link to convert')
-args = parser.parse_args()
-
 def bitlink(token, url):
     headers = {'Authorization': token}
 
@@ -32,8 +25,15 @@ def bitlink(token, url):
         else:
             return f'Error {response.status_code}.'
 
-
-if __name__ == '__main__':
+def main():
+    load_dotenv()
+    token = os.getenv('TOKEN')
+    parser = argparse.ArgumentParser(description='URL converter')
+    parser.add_argument('url', help='URL link to convert')
+    args = parser.parse_args()
     url = args.url
-    link = bitlink(TOKEN, url)
+    link = bitlink(token, url)
     print(link)
+    
+if __name__ == '__main__':
+    main()
